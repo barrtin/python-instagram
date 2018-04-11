@@ -28,6 +28,7 @@ class InstagramAPI(oauth2.OAuth2API):
             raise Exception("Unsupported format")
         super(InstagramAPI, self).__init__(**kwargs)
 
+    # Warning: Deprecated
     media_popular = bind_method(
                 path="/media/popular",
                 accepts_parameters=MEDIA_ACCEPT_PARAMETERS,
@@ -38,6 +39,7 @@ class InstagramAPI(oauth2.OAuth2API):
                 accepts_parameters=SEARCH_ACCEPT_PARAMETERS + ['lat', 'lng', 'min_timestamp', 'max_timestamp', 'distance'],
                 root_class=Media)
 
+    # Warning: Deprecated
     media_shortcode = bind_method(
                 path="/media/shortcode/{shortcode}",
                 accepts_parameters=['shortcode'],
@@ -46,11 +48,13 @@ class InstagramAPI(oauth2.OAuth2API):
                 exclude_format=True)
 
 
+    # Warning: Deprecated
     media_likes = bind_method(
                 path="/media/{media_id}/likes",
                 accepts_parameters=['media_id'],
                 root_class=User)
 
+    # Warning: Deprecated
     like_media = bind_method(
                 path="/media/{media_id}/likes",
                 method="POST",
@@ -58,6 +62,7 @@ class InstagramAPI(oauth2.OAuth2API):
                 accepts_parameters=['media_id'],
                 response_type="empty")
 
+    # Warning: Deprecated
     unlike_media = bind_method(
                 path="/media/{media_id}/likes",
                 method="DELETE",
@@ -65,6 +70,7 @@ class InstagramAPI(oauth2.OAuth2API):
                 accepts_parameters=['media_id'],
                 response_type="empty")
 
+    # Warning: Deprecated
     create_media_comment = bind_method(
                 path="/media/{media_id}/comments",
                 method="POST",
@@ -73,6 +79,7 @@ class InstagramAPI(oauth2.OAuth2API):
                 response_type="empty",
                 root_class=Comment)
 
+    # Warning: Deprecated
     delete_comment = bind_method(
                 path="/media/{media_id}/comments/{comment_id}",
                 method="DELETE",
@@ -80,6 +87,7 @@ class InstagramAPI(oauth2.OAuth2API):
                 accepts_parameters=['media_id', 'comment_id'],
                 response_type="empty")
 
+    # Warning: Deprecated
     media_comments = bind_method(
                 path="/media/{media_id}/comments",
                 method="GET",
@@ -87,18 +95,21 @@ class InstagramAPI(oauth2.OAuth2API):
                 response_type="list",
                 root_class=Comment)
 
+    # Warning: Deprecated
     media = bind_method(
                 path="/media/{media_id}",
                 accepts_parameters=['media_id'],
                 response_type="entry",
                 root_class=Media)
 
+    # Warning: Deprecated
     user_media_feed = bind_method(
                 path="/users/self/feed",
                 accepts_parameters=MEDIA_ACCEPT_PARAMETERS,
                 root_class=Media,
                 paginates=True)
 
+    # Warning: Deprecated
     user_liked_media = bind_method(
                 path="/users/self/media/liked",
                 accepts_parameters=MEDIA_ACCEPT_PARAMETERS,
@@ -106,22 +117,25 @@ class InstagramAPI(oauth2.OAuth2API):
                 paginates=True)
 
     user_recent_media = bind_method(
-                path="/users/{user_id}/media/recent",
-                accepts_parameters=MEDIA_ACCEPT_PARAMETERS + ['user_id', 'min_id', 'max_timestamp', 'min_timestamp'],
+                path="/users/self/media/recent",
+                accepts_parameters=MEDIA_ACCEPT_PARAMETERS + ['user_id', 'min_id', 'max_timestamp', 'min_timestamp'], # TODO It doesn't
                 root_class=Media,
                 paginates=True)
 
+    # Warning: Deprecated
     user_search = bind_method(
                 path="/users/search",
                 accepts_parameters=SEARCH_ACCEPT_PARAMETERS,
                 root_class=User)
 
+    # Warning: Deprecated
     user_follows = bind_method(
                 path="/users/{user_id}/follows",
                 accepts_parameters=["user_id"],
                 paginates=True,
                 root_class=User)
 
+    # Warning: Deprecated
     user_followed_by = bind_method(
                 path="/users/{user_id}/followed-by",
                 accepts_parameters=["user_id"],
@@ -129,8 +143,8 @@ class InstagramAPI(oauth2.OAuth2API):
                 root_class=User)
 
     user = bind_method(
-                path="/users/{user_id}",
-                accepts_parameters=["user_id"],
+                path="/users/self",
+                accepts_parameters=["user_id"], # TODO It doesn't
                 root_class=User,
                 response_type="entry")
 
@@ -175,10 +189,12 @@ class InstagramAPI(oauth2.OAuth2API):
                 root_class=Tag,
                 response_type="entry")
 
+    # Warning: Deprecated
     user_incoming_requests = bind_method(
                 path="/users/self/requested-by",
                 root_class=User)
 
+    # Warning: Deprecated
     change_user_relationship = bind_method(
                 method="POST",
                 path="/users/{user_id}/relationship",
@@ -189,6 +205,7 @@ class InstagramAPI(oauth2.OAuth2API):
                 requires_target_user=True,
                 response_type="entry")
 
+    # Warning: Deprecated
     user_relationship = bind_method(
                 method="GET",
                 path="/users/{user_id}/relationship",
