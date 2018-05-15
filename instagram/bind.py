@@ -186,7 +186,7 @@ def bind_method(**config):
             # if self.as_generator:
             #     return self._paginator_with_url(url, method, body, headers)
             # else:
-            content, next = self._do_api_request(url, method, body, headers)
+            content = self._do_api_request(url, method, body, headers)
             return content
             # if self.paginates:
             #     return content, next
