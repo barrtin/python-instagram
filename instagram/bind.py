@@ -158,7 +158,7 @@ def bind_method(**config):
                         api_responses = self.root_class.object_from_dictionary(data)
                 elif self.response_type == 'empty':
                     pass
-                return api_responses, self._build_pagination_info(content_obj)
+                return api_responses#, self._build_pagination_info(content_obj)
             else:
                 raise InstagramAPIError(status_code, content_obj['meta']['error_type'], content_obj['meta']['error_message'])
 
