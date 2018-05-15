@@ -181,16 +181,17 @@ def bind_method(**config):
                                                                                  self.path,
                                                                                  self.parameters,
                                                                                  include_secret=self.include_secret)
-            if self.with_next_url:
-                return self._get_with_next_url(self.with_next_url, method, body, headers)
-            if self.as_generator:
-                return self._paginator_with_url(url, method, body, headers)
-            else:
-                content, next = self._do_api_request(url, method, body, headers)
-            if self.paginates:
-                return content, next
-            else:
-                return content
+            # if self.with_next_url:
+            #     return self._get_with_next_url(self.with_next_url, method, body, headers)
+            # if self.as_generator:
+            #     return self._paginator_with_url(url, method, body, headers)
+            # else:
+            content, next = self._do_api_request(url, method, body, headers)
+            return content
+            # if self.paginates:
+            #     return content, next
+            # else:
+            #     return content
 
     def _call(api, *args, **kwargs):
         method = InstagramAPIMethod(api, *args, **kwargs)
